@@ -5,12 +5,16 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
-//init static membervariables
+//init static member variables
 bool Display::m_active = false;
 Display::Out Display::out;
 Display::Out_p Display::out_p;
 short Display::m_timer = 0;
 short Display::m_timerFade = 0;
+
+//DISPLAY
+short Display::m_offtime = 5000; //after 5 seconds
+short Display::m_fadeInTime = 2000; // half second
 
 void Display::init()
 {
@@ -18,14 +22,14 @@ void Display::init()
     //set OC0B as output
     DDRB |= (1 << DDB4);
 
-    //COM0B0 toggle OC0B on compareMatch and phasecorect PWM
+    //COM0B0 toggle OC0B on compareMatch and phase correct PWM
     TCCR0A = 0x00;
     //Clear OC0B on Compare Match when up-counting. Set OC0B on
     //Compare Match when down-counting.
     TCCR0A |= (1 << COM0B1) | (1 << WGM00);
     TCCR0B = 0x00;
-    TCCR0B |= (1 << CS02); //prescaler of /256
-    //doesnt matter if OCR0A or B just depend on clear flag
+    TCCR0B |= (1 << CS02); //pre scaler of /256
+    //doesn't matter if OCR0A or B just depend on clear flag
     OCR0B = 255; //compare register für B max helligkeit
 
     //END DiSPLAY LIGHT
@@ -40,7 +44,7 @@ void Display::init()
     //initialize everything else
     //NOTE: In case you need an other initialization-routine (blinking cursor,
     //double line height etc.) choose the appropriate instructions from
-    //the ST7036 datasheet and adjust the C-defines at the top of this file
+    //the ST7036 data sheet and adjust the C-defines at the top of this file
     write_instruction(INSTRUCTION_BIAS_SET);
     write_instruction(INSTRUCTION_POWER_CONTROL);
     write_instruction(INSTRUCTION_FOLLOWER_CONTROL);
@@ -98,7 +102,7 @@ void Display::write(const unsigned char& data)
     cli();
     char port_buffer = LCD_PORT;
 
-    LCD_PORT |= (1 << PIN_RW);//pull high and readmode
+    LCD_PORT |= (1 << PIN_RW);//pull high and read mode
     LCD_DDR &= ~(1 << BUSY_BIT);
     while(INPUT_PIN & (1 << BUSY_BIT));
     LCD_PORT &= ~(1 << PIN_RW); //pull low to write mode
@@ -113,7 +117,7 @@ void Display::write(const unsigned char& data)
     LCD_PORT = port_buffer; //set enable=0 and reset port to 0
     //_delay_us(200);
 
-    LCD_PORT |= (1 << PIN_RW);//pull high and readmode
+    LCD_PORT |= (1 << PIN_RW);//pull high and read mode
     LCD_DDR &= ~(1 << BUSY_BIT);
     while(INPUT_PIN & (1 << BUSY_BIT));
     LCD_PORT &= ~(1 << PIN_RW); //pull low to write mode
@@ -145,11 +149,9 @@ void Display::write_data(const unsigned char& data)
 }
 
 
-void Display::set_cursor(const uint8_t& row,
-                         const uint8_t& column)
+void Display::set_cursor(const uint8_t& row, const uint8_t& column)
 {
-    write_instruction(CHARACTER_BUFFER_BASE_ADDRESS + row * CHARACTERS_PER_ROW +
-                      column);
+    write_instruction(CHARACTER_BUFFER_BASE_ADDRESS + row * CHARACTERS_PER_ROW + column);
 }
 
 void Display::write_string(const char* string)
@@ -165,7 +167,7 @@ void Display::write_string(const char* string)
     while(*string)
     {
         write(*string);
-        *string++;
+        string++;
     }
 }
 
@@ -284,14 +286,14 @@ Display::Out_p& Display::Out_p::operator<<(const bool& b)
         Display::write_string_P(PSTR("false"));
     return *this;
 }
+
 Display::Out_p& Display::Out_p::operator<<(const char string)
 {
     Display::write_data(string);
     return *this;
 };
 
-Display::Out_p& Display::Out_p::operator()(const uint8_t& row,
-        const uint8_t& colum)
+Display::Out_p& Display::Out_p::operator()(const uint8_t& row, const uint8_t& colum)
 {
     Display::set_cursor(row, colum);
     return *this;

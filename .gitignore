@@ -1,4 +1,6 @@
 .vs/
+cube_v3/Debug
+cube_v3/Release
 
 # Prerequisites
 *.d
