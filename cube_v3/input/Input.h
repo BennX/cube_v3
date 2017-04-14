@@ -16,7 +16,7 @@ public:
     /**
      * Returns true if the button i is "active"
      */
-    bool isPressed(const uint8_t &i);
+    bool isPressed(const uint8_t& i);
 
     /**
      * Retruns true if the inc is "active"
@@ -44,8 +44,8 @@ private:
     Input();
     ~Input();
     //no copy no assignement
-    Input( const Input &c ) = delete;
-    Input &operator=( const Input &c ) = delete;
+    Input(const Input& c) = delete;
+    Input& operator=(const Input& c) = delete;
 //current difference of the incremental
     volatile int8_t m_enc_delta;
     int8_t m_last;
@@ -54,16 +54,16 @@ private:
     uint16_t m_inc_click_timer;
 
     //configurations
-    static volatile uint8_t *INC_PIN;
-    static volatile uint8_t *INC_DDR;
-    static volatile uint8_t *INC_PORT;
+    static volatile uint8_t* INC_PIN;
+    static volatile uint8_t* INC_DDR;
+    static volatile uint8_t* INC_PORT;
     static const uint8_t INC_PHASE1_PIN;
     static const uint8_t INC_PHASE2_PIN;
     static const uint8_t INC_TASER_PIN;
 
-    static volatile uint8_t *BUTTON_PIN;
-    static volatile uint8_t *BUTTON_DDR;
-    static volatile uint8_t *BUTTON_PORT;
+    static volatile uint8_t* BUTTON_PIN;
+    static volatile uint8_t* BUTTON_DDR;
+    static volatile uint8_t* BUTTON_PORT;
     static const uint8_t BUTTON0;
     static const uint8_t BUTTON1;
     static const uint8_t BUTTON2;

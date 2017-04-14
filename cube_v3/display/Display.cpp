@@ -162,7 +162,7 @@ void Display::write_string(const char* string)
     m_timer = 0; //also reset the timer
     m_timerFade = 0;
     LCD_PORT |= (1 << PIN_RS);
-    while (*string)
+    while(*string)
     {
         write(*string);
         *string++;
@@ -179,11 +179,11 @@ void Display::write_string_P(const char* string)
     m_timerFade = 0;
     LCD_PORT |= (1 << PIN_RS);
 
-    while (1)
+    while(1)
     {
-        unsigned char c = pgm_read_byte (string);
+        unsigned char c = pgm_read_byte(string);
         string++;
-        if ('\0' == c)
+        if('\0' == c)
             break;
         write(c);
     }
@@ -309,7 +309,7 @@ void Display::update(const short& delta)
 
             setDisplayLight(255 * (1.0 - (float)m_timerFade / (float)m_fadeInTime));
 
-            if (m_timerFade >= m_fadeInTime)
+            if(m_timerFade >= m_fadeInTime)
             {
                 Display::off();
             }

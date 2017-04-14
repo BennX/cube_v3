@@ -40,13 +40,13 @@ private:
      */
     struct Out
     {
-        Out &operator<<(const char *string);
-        Out &operator<<(const int &i);
-        Out &operator<<(const unsigned int &i);
-        Out &operator<<(const double &d);
-        Out &operator<<(const bool &b);
-        Out &operator<<(const char string);
-        Out &operator()(const uint8_t &row, const uint8_t &colum);
+        Out& operator<<(const char* string);
+        Out& operator<<(const int& i);
+        Out& operator<<(const unsigned int& i);
+        Out& operator<<(const double& d);
+        Out& operator<<(const bool& b);
+        Out& operator<<(const char string);
+        Out& operator()(const uint8_t& row, const uint8_t& colum);
     };
     /**
      * Out for progmem strings
@@ -56,13 +56,13 @@ private:
         /**
          * write a progmem string to display.
          */
-        Out_p &operator<<(const char *string);
-        Out_p &operator<<(const int &i);
-        Out_p &operator<<(const unsigned int &i);
-        Out_p &operator<<(const double &d);
-        Out_p &operator<<(const bool &b);
-        Out_p &operator<<(const char string);
-        Out_p &operator()(const uint8_t &row, const uint8_t &colum);
+        Out_p& operator<<(const char* string);
+        Out_p& operator<<(const int& i);
+        Out_p& operator<<(const unsigned int& i);
+        Out_p& operator<<(const double& d);
+        Out_p& operator<<(const bool& b);
+        Out_p& operator<<(const char string);
+        Out_p& operator()(const uint8_t& row, const uint8_t& colum);
     };
 
 public:
@@ -74,38 +74,38 @@ public:
     /**
     * Write a single Char
     */
-    static void write_data(const unsigned char &data);
-    static void set_cursor(const uint8_t &row, const uint8_t &column);
+    static void write_data(const unsigned char& data);
+    static void set_cursor(const uint8_t& row, const uint8_t& column);
     /**
      * Used to write a char array to the current position.
      */
-    static void write_string(const char *string);
-    static void write_string_P(const char *string);
+    static void write_string(const char* string);
+    static void write_string_P(const char* string);
     /**
     * @param value 0...255 PWM Value
     */
-    static void setDisplayLight(const uint8_t &value);
+    static void setDisplayLight(const uint8_t& value);
     static void clear();
     static void off();
     static void on();
     static bool isActive();
-	static void update(const short &delta);
+    static void update(const short& delta);
     //the out shifter
     static Out out;
     static Out_p out_p;
 
 protected:
-    static void write_instruction(const unsigned char &data);
-    static inline void write(const unsigned char &data);
+    static void write_instruction(const unsigned char& data);
+    static inline void write(const unsigned char& data);
     static bool m_active;
 private:
     Display() {};
-    Display( const Display &c );
-    Display &operator=( const Display &c );
-	static short m_timer;
-	static short m_timerFade;
-	static short m_offtime;
-	static short m_fadeInTime;
+    Display(const Display& c);
+    Display& operator=(const Display& c);
+    static short m_timer;
+    static short m_timerFade;
+    static short m_offtime;
+    static short m_fadeInTime;
 }; //Display
 
 #endif //__DISPLAY_H__

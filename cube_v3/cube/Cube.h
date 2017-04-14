@@ -38,11 +38,11 @@ public:
 
     cube::CubeProxy& operator()(uint8_t x, uint8_t y, uint8_t z);
 private:
-	cube::CubeProxy m_proxy;
+    cube::CubeProxy m_proxy;
     Cube();
     //no copy!
-    Cube( const Cube& c ) = delete;
-    Cube& operator=( const Cube& c ) = delete;
+    Cube(const Cube& c) = delete;
+    Cube& operator=(const Cube& c) = delete;
 
     static Cube m_instance;
 

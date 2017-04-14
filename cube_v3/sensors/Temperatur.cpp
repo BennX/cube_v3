@@ -1,6 +1,6 @@
 #include "Temperatur.h"
 
-void Temperatur::get(char *buffer)
+void Temperatur::get(char* buffer)
 {
     double d = get();
     dtostrf(d, 5, 3, buffer);
@@ -11,7 +11,7 @@ uint8_t Temperatur::reset()
     uint8_t i;
 
     //low for 480us
-    DS18B20_PORT &= ~ (1 << DS18B20_DQ); //low
+    DS18B20_PORT &= ~(1 << DS18B20_DQ);  //low
     DS18B20_DDR |= (1 << DS18B20_DQ); //output
     _delay_us(480);
 
@@ -30,7 +30,7 @@ uint8_t Temperatur::reset()
 void Temperatur::write_bit(uint8_t bit)
 {
     //low for 1uS
-    DS18B20_PORT &= ~ (1 << DS18B20_DQ); //low
+    DS18B20_PORT &= ~(1 << DS18B20_DQ);  //low
     DS18B20_DDR |= (1 << DS18B20_DQ); //output
     _delay_us(1);
 
@@ -58,7 +58,7 @@ uint8_t Temperatur::read_bit()
     uint8_t bit = 0;
 
     //low for 1uS
-    DS18B20_PORT &= ~ (1 << DS18B20_DQ); //low
+    DS18B20_PORT &= ~(1 << DS18B20_DQ);  //low
     DS18B20_DDR |= (1 << DS18B20_DQ); //output
     _delay_us(1);
 

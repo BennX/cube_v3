@@ -16,54 +16,54 @@ public:
     //constructor for hex values like
     // 0x000000
     // first 8 bit = r secon 8bit = g last 8bit = b
-    explicit RGB(const uint32_t &hex);
+    explicit RGB(const uint32_t& hex);
 
     //compare
-    bool operator== (const RGB &other) const;
+    bool operator== (const RGB& other) const;
 
 
-    RGB operator+ (const RGB &other) const;
-    RGB &operator+= (const RGB &other);
+    RGB operator+ (const RGB& other) const;
+    RGB& operator+= (const RGB& other);
 
-    RGB operator- (const RGB &other) const;
-    RGB &operator-= (const RGB &other);
+    RGB operator- (const RGB& other) const;
+    RGB& operator-= (const RGB& other);
 
-    RGB operator* (const RGB &other) const;
-    RGB &operator*= (const RGB &other);
+    RGB operator* (const RGB& other) const;
+    RGB& operator*= (const RGB& other);
 
-    RGB operator/ (const RGB &other) const;
-    RGB &operator/= (const RGB &other);
+    RGB operator/ (const RGB& other) const;
+    RGB& operator/= (const RGB& other);
 
 
     /**
      * Adds the value to all!
      */
     RGB operator+ (uint8_t i) const;
-    RGB &operator+= (uint8_t i);
+    RGB& operator+= (uint8_t i);
     /**
     * subs the value to all!
     */
     RGB operator- (uint8_t i) const;
-    RGB &operator-= (uint8_t i);
+    RGB& operator-= (uint8_t i);
 
     /**
     * mult the value to all!
     */
-    RGB operator* (const float &f) const;
-    RGB &operator*= (const float &f);
+    RGB operator* (const float& f) const;
+    RGB& operator*= (const float& f);
 
     RGB operator* (uint8_t i) const;
-    RGB &operator*= (uint8_t i);
+    RGB& operator*= (uint8_t i);
 
 
     /**
     * div the value to all!
     */
     RGB operator/ (uint8_t i) const;
-    RGB &operator/= (uint8_t i);
+    RGB& operator/= (uint8_t i);
 
-    RGB operator/ (const float &f) const;
-    RGB &operator/= (const float &f);
+    RGB operator/ (const float& f) const;
+    RGB& operator/= (const float& f);
 
     void random();
 

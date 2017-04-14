@@ -34,7 +34,7 @@ public:
     /**
      * Automatically convert into a string length of 5 with 3 digits after the dot
      */
-    static void get(char *buffer);
+    static void get(char* buffer);
     /**
      * Returns the temperature double.
      * Interupt safe access to the temperature sensor.

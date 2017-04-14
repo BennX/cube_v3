@@ -2,35 +2,35 @@
 #define __VECTOR_H__
 class Vector
 {
-	public:
-	float x, y, z;
+public:
+    float x, y, z;
 
-	Vector();
-	Vector(const Vector& c);   //copy ctor
-	inline Vector& operator=(const Vector& c);
-	Vector(const float& x, const float& y, const float& z);
+    Vector();
+    Vector(const Vector& c);   //copy ctor
+    inline Vector& operator=(const Vector& c);
+    Vector(const float& x, const float& y, const float& z);
 
-	~Vector();
+    ~Vector();
 
-	inline Vector& nor();
-	inline Vector cross(const Vector& other) const;
-	inline float dot(const Vector& other) const;
-	inline float norm() const;
+    inline Vector& nor();
+    inline Vector cross(const Vector& other) const;
+    inline float dot(const Vector& other) const;
+    inline float norm() const;
 
-	//calculates the distance to the other
-	inline float dist(const Vector& other) const;
+    //calculates the distance to the other
+    inline float dist(const Vector& other) const;
 
-	inline Vector& rnd();
-	inline Vector& rnd(const float& f);
+    inline Vector& rnd();
+    inline Vector& rnd(const float& f);
 
-	inline Vector& operator+=(const Vector& other);
-	inline Vector operator+(const Vector& other) const;
+    inline Vector& operator+=(const Vector& other);
+    inline Vector operator+(const Vector& other) const;
 
-	inline Vector& operator-=(const Vector& other);
-	inline Vector operator-(const Vector& other) const;
+    inline Vector& operator-=(const Vector& other);
+    inline Vector operator-(const Vector& other) const;
 
-	inline Vector& operator*=(const float& f);
-	inline Vector operator*(const float& other) const;
+    inline Vector& operator*=(const float& f);
+    inline Vector operator*(const float& other) const;
 }; //Vector
 
 //include the inlines
